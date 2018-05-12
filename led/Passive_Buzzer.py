@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO
 import time
+import random
 
 BZRPin = 37
 
@@ -93,6 +94,18 @@ def playSong(songnotes, songbeats, tempo):
         time.sleep(songbeats[i]*tempo)
     p.ChangeDutyCycle(0)
 
+def random_notes():
+	merged = a + b + c + d + e + f + g + ab + bb + db + eb + gb
+	random_list = list(range(100, 2999, 2))
+	rand_beats = [2, 1, .5]
+	p.ChangeDutyCycle(50)
+	while True:
+		n = random.randint(0, len(random_list)-1)
+		beats = random.randint(0, len(rand_beats)-1)
+		print('Notes:' + str(n) + ' Beats:' + str(beats))
+		
+		p.ChangeFrequency(random_list[n])
+		time.sleep(rand_beats[beats] * 0.2)
 try:
 	while True:
 		# for f in [34, 69, 139, 277, 554]:
@@ -101,8 +114,9 @@ try:
 		# for f in [58, 117, 223, 466, 932]:
 			# p.ChangeFrequency(f)
 			# time.sleep(0.2)
-		playSong(starwars_notes, starwars_beats, 0.2)
-		playSong(londonbridges_notes, londonbridges_beats, 0.3)
+		# playSong(starwars_notes, starwars_beats, 0.2)
+		# playSong(londonbridges_notes, londonbridges_beats, 0.3)
+		random_notes()
 except KeyboardInterrupt:
 	p.stop()
 	GPIO.cleanup()
