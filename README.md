@@ -1,1 +1,1 @@
-# raspberry_pi
+# List of Raspberry pi automation scripts
