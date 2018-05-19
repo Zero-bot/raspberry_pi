@@ -3,7 +3,7 @@
 import RPi.GPIO as GPIO
 import time
 
-leds = {"red": 11, "yellow": 7, "green": 13}
+leds = {"red": 11, "yellow": 7, "green": 12}
 
 def setUp(LedPin):
 	GPIO.setmode(GPIO.BOARD)
